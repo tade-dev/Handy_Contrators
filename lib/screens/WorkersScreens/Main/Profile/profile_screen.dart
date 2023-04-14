@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:handy_contractors/routes/app_route_names.dart';
-import 'package:handy_contractors/screens/WorkersScreens/Main/Profile/tab_views/client_views.dart';
+import 'package:handy_contractors/screens/WorkersScreens/Main/Profile/tab_views/interets_view.dart';
 import 'package:handy_contractors/screens/WorkersScreens/Main/Profile/tab_views/comment_views.dart';
 import 'package:readmore/readmore.dart';
 
@@ -287,7 +287,7 @@ class ProfileScreen extends StatelessWidget {
                             text: "Comments",
                           ),
                           Tab(
-                            text: "Clients",
+                            text: "Interests",
                           ),
                         ]
                       ),
