@@ -1,5 +1,11 @@
 // ========= APP ROUTE NAMES =========
 
+// ========= SPLASH SCREEN =========
+String splashScreen = "/splashScreen";
+
+// ========= ONBOARDING SCREEH =========
+String onboardingScreen = "/onboardingScreen";
+
 // ========= AUTH ROUTE NAMES =========
 String loginScreen = "/loginScreen";
 String emailVerificationScreen = "/emailVerificationScreen";
