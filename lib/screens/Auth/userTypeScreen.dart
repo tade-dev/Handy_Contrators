@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:handy_contractors/controller/auth_state_controller.dart';
 import 'package:handy_contractors/routes/app_route_names.dart';
-import 'package:iconsax/iconsax.dart';
 
 class UserTypeScreen extends StatelessWidget {
   UserTypeScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final AuthStateController _authStateController = Get.find<AuthStateController>();
+  final AuthStateController _authStateController = Get.put(AuthStateController());
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:handy_contractors/screens/WorkersScreens/Main/Chats/chats_list_screen.dart';
 import 'package:handy_contractors/screens/WorkersScreens/Main/Home/homeScreen.dart';
 import 'package:handy_contractors/screens/WorkersScreens/Main/Jobs/jobs_screen.dart';
 

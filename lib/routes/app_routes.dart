@@ -2,7 +2,6 @@
 
 import 'package:get/get.dart';
 import 'package:handy_contractors/routes/app_route_names.dart';
-import 'package:handy_contractors/screens/Onboarding%20Screens/onboardingScreen.dart';
 import 'package:handy_contractors/screens/Splash/splashScreen.dart';
 import 'package:handy_contractors/screens/WorkersScreens/Auth/choose_intersts_screen.dart';
 import 'package:handy_contractors/screens/WorkersScreens/Main/Chats/chats_list_screen.dart';
@@ -30,12 +29,12 @@ List<GetPage> getPages = [
   ),
 
   // ONBOARDING SCREEN
-  GetPage(
-    name: onboardingScreen,
-    page: () => OnboardingScreen(),
-    transition: Transition.cupertino,
-    transitionDuration: const Duration(seconds: 2)
-  ),
+  // GetPage(
+  //   name: onboardingScreen,
+  //   page: () => OnboardingScreen(),
+  //   transition: Transition.cupertino,
+  //   transitionDuration: const Duration(seconds: 2)
+  // ),
 
   // AUTH ROUTE
   GetPage(
