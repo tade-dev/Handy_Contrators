@@ -14,9 +14,11 @@ import 'package:handy_contractors/screens/WorkersScreens/Main/Setting/settings_s
 import 'package:handy_contractors/screens/WorkersScreens/Main/holder_screen.dart';
 
 import '../screens/Auth/emailVerification.dart';
+import '../screens/Auth/forgotPassword.dart';
 import '../screens/Auth/loginScreen.dart';
 import '../screens/Auth/signUpScreen.dart';
 import '../screens/Auth/userTypeScreen.dart';
+import '../screens/Onboarding Screens/onboardingScreen.dart';
 
 List<GetPage> getPages = [
 
@@ -29,12 +31,12 @@ List<GetPage> getPages = [
   ),
 
   // ONBOARDING SCREEN
-  // GetPage(
-  //   name: onboardingScreen,
-  //   page: () => OnboardingScreen(),
-  //   transition: Transition.cupertino,
-  //   transitionDuration: const Duration(seconds: 2)
-  // ),
+  GetPage(
+    name: onboardingScreen,
+    page: () => OnboardingScreen(),
+    transition: Transition.cupertino,
+    transitionDuration: const Duration(seconds: 2)
+  ),
 
   // AUTH ROUTE
   GetPage(
@@ -58,6 +60,12 @@ List<GetPage> getPages = [
   GetPage(
     name: userTypeScreen,
     page: ()=> UserTypeScreen(),
+    transition: Transition.cupertino,
+    transitionDuration: const Duration(seconds: 1)
+  ),
+  GetPage(
+    name: forgotPasswordScreen,
+    page: ()=> ForgotPasswordScreen(),
     transition: Transition.cupertino,
     transitionDuration: const Duration(seconds: 1)
   ),

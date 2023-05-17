@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:handy_contractors/controller/auth_state_controller.dart';
 
-import '../../controller/auth_state_controller.dart';
-
-class EmailVerificationScreen extends StatelessWidget {
-  EmailVerificationScreen({super.key});
+class ForgotPasswordScreen extends StatelessWidget {
+  ForgotPasswordScreen({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthStateController _authStateController = Get.put(AuthStateController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class EmailVerificationScreen extends StatelessWidget {
             ),
             centerTitle: true,
             title: const Text(
-              "Verification",
+              "Forgot Password",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 15,
@@ -52,7 +50,7 @@ class EmailVerificationScreen extends StatelessWidget {
                   children: [
                     const SizedBox(height: 20,),
                     const Text(
-                      "Email Verification",
+                      "Forgot Password ?",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -60,7 +58,7 @@ class EmailVerificationScreen extends StatelessWidget {
                       ),
                     ),
                     const Text(
-                      "We just sent a 6-digit otp to your email\nakintadese",
+                      "Please enter your valid email for a verification code",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 12,
@@ -68,38 +66,29 @@ class EmailVerificationScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 30,),
-                    PinCodeTextField(
-                      appContext: context, 
-                      length: 4, 
-                      onChanged: ((value) {
-                        controller.updateOtpCode(value);
-                      }),
-                      pinTheme: PinTheme(
-                        inactiveColor: Colors.grey,
-                        selectedColor: const Color(0xff1B5299),
-                        activeColor: const Color(0xff1B5299)
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: (){
-                            (_formKey.currentState!.validate())?
-                            controller.resendVerification()
-                            :                      
-                            AutovalidateMode.disabled;  
-                          }, 
-                          child: const Text(
-                            "Resend otp?",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
-                              fontFamily: "PoppinsMedium"
-                            ),
-                          ),
-                        )
-                      ],
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      onChanged: (value) {
+                        controller.updateEmail(value);
+                      },
+                      validator: ValidationBuilder().minLength(3).email().build(),
+                      decoration: const InputDecoration(
+                        hintText: "Enter Email Address",
+                        prefixIcon: Icon(
+                          Icons.mail_outline_rounded,
+                          color: Color(0xff1B5299),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff1B5299)
+                          )
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xff1B5299)
+                          )
+                        ),
+                      ), 
                     ),
                     const SizedBox(height: 30,),
                     SizedBox(
@@ -113,7 +102,7 @@ class EmailVerificationScreen extends StatelessWidget {
                       TextButton(
                         onPressed: (){
                           (_formKey.currentState!.validate())?
-                          controller.verifyEmail()
+                          controller.forgotPassword()
                           :                      
                           AutovalidateMode.disabled;  
                         }, 
@@ -124,7 +113,7 @@ class EmailVerificationScreen extends StatelessWidget {
                           backgroundColor: const Color(0xff1B5299)
                         ),
                         child: const Text(
-                          "Verify",
+                          "Send",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,

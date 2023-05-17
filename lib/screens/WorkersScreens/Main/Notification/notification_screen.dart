@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:handy_contractors/routes/app_route_names.dart';
-import 'package:iconsax/iconsax.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});

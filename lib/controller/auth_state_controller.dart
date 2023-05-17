@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:handy_contractors/services/user_api_services.dart';
 
 import '../routes/app_route_names.dart';
 import '../services/auth_api_services.dart';
@@ -183,6 +184,48 @@ class AuthStateController extends GetxController{
         textColor: Colors.white,
         fontSize: 16.0
       );
+      Get.offAllNamed(forgotPasswordVerificationScreen);
+
+    } else {
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Failed!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+    }
+
+    update();
+  } 
+
+  Future<void> resetPassword() async{
+    updateIsLoading(true);
+
+    Map<String, dynamic> _details = {
+      "otpCode": _otpCode,
+    };
+    print(_details);
+
+    var response = await AuthApiServices.resetPasswordService(_details);
+    var responseData = response!.data;
+    print(responseData);
+
+    bool isSuccess = responseData["success"];
+    if(isSuccess){
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Verified Successfully!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
       // Get.offAllNamed(lawyerprofileAvailabilityScreen);
 
     } else {
@@ -285,4 +328,159 @@ class AuthStateController extends GetxController{
     update();
   } 
 
+  Future<void> getAllUserProfile() async{
+    updateIsLoading(true);
+
+    var response = await UserApiServices.getAllUsersService();
+    var responseData = response!.data;
+    print(responseData);
+
+    bool isSuccess = responseData["success"];
+    if(isSuccess){
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Retrieved Successfully!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+      Get.offAllNamed(userTypeScreen);
+
+    } else {
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Failed!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+    }
+
+    update();
+  } 
+
+  Future<void> setProfile() async{
+    updateIsLoading(true);
+
+    Map<String, dynamic> _details = {
+      "userType": _selectedUserType,
+      "interest": ""
+    };
+
+    var response = await UserApiServices.setProfileService(_details);
+    var responseData = response!.data;
+    print(responseData);
+
+    bool isSuccess = responseData["success"];
+    if(isSuccess){
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Set Successfully!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+
+      // Get.offAllNamed(la);
+
+    } else {
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Failed!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+    }
+
+    update();
+  } 
+
+  Future<void> getProfile() async{
+    updateIsLoading(true);
+
+    var response = await UserApiServices.getProfileService();
+    var responseData = response!.data;
+    print(responseData);
+
+    bool isSuccess = responseData["success"];
+    if(isSuccess){
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Retrieved Successfully!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+
+      // Get.offAllNamed(la);
+
+    } else {
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Failed!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+    }
+
+    update();
+  } 
+
+  Future<void> deleteProfile() async{
+    updateIsLoading(true);
+
+    var response = await UserApiServices.deleteProfileService();
+    var responseData = response!.data;
+    print(responseData);
+
+    bool isSuccess = responseData["success"];
+    if(isSuccess){
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Deleted Successfully!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+
+      // Get.offAllNamed(la);
+
+    } else {
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Failed!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+    }
+
+    update();
+  } 
 }

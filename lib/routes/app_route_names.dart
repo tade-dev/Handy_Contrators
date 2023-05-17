@@ -11,6 +11,8 @@ String loginScreen = "/loginScreen";
 String emailVerificationScreen = "/emailVerificationScreen";
 String signUpScreen = "/signUpScreen";
 String userTypeScreen = "/userTypeScreen";
+String forgotPasswordScreen = "/forgotPasswordScreen";
+String forgotPasswordVerificationScreen = "/forgotPasswordVerificationScreen";
 
 // =========== WORKERS ROUTE NAMES ==========
 String chooseInterstsScreen = "/chooseInterstsScreen";

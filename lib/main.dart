@@ -4,7 +4,7 @@ import 'package:handy_contractors/routes/app_route_names.dart';
 import 'package:handy_contractors/routes/app_routes.dart';
 
 void main(List<String> args) {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
