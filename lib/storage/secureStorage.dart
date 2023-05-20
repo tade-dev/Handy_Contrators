@@ -42,6 +42,25 @@ class LocalStorage{
     return token;
   }
 
+  // STORE EMAIL
+  storeUserEmail(String email) async{
+    try {
+      await _flutterSecureStorage.write(key: "Email", value: email);
+      print("Saved Email");
+    } catch (e) {
+      print(e);
+      print("Could not save email");
+    }
+  }
+
+  // FETCH EMAIL
+  Future<String> fetchUserEmail() async{
+    String email = await _flutterSecureStorage.read(key: "Email") ?? "";
+    print("Fetched email successful");
+
+    return email;
+  }
+
   // DELETE USER FROM STORAGE
   Future<void> deleteUserStorage() async{
     await _flutterSecureStorage.deleteAll();

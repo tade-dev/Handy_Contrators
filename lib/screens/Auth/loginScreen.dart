@@ -148,10 +148,11 @@ class LoginScreen extends StatelessWidget {
                           :
                       TextButton(
                         onPressed: (){
-                          (_formKey.currentState!.validate())?
-                          controller.loginUser()
-                          :                      
-                          AutovalidateMode.disabled;  
+                          // (_formKey.currentState!.validate())?
+                          // controller.loginUser(context)
+                          // :                      
+                          // AutovalidateMode.disabled;  
+                          Get.toNamed(userTypeScreen);
                         }, 
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(

@@ -4,14 +4,16 @@ import 'package:handy_contractors/controller/workers_state_controller.dart';
 import 'package:handy_contractors/routes/app_route_names.dart';
 import 'package:iconsax/iconsax.dart';
 
-class HolderScreen extends StatelessWidget {
-  HolderScreen({super.key});
+import '../../../controller/contractors_state_controller.dart';
 
-  final WorkersStateController _workersStateController = Get.put(WorkersStateController());
+class ContractorHolderScreen extends StatelessWidget {
+  ContractorHolderScreen({super.key});
+
+  final ContractorsStateController _contractorsStateController = Get.put(ContractorsStateController());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<WorkersStateController>(
+    return GetBuilder<ContractorsStateController>(
       builder: (controller) {
         return Scaffold(
           body: controller.screens[controller.selectedIndex],
@@ -44,7 +46,7 @@ class HolderScreen extends StatelessWidget {
                       controller.updateSelectedIndexItem(1);
                     }, 
                     child: Icon(
-                      Iconsax.briefcase,
+                      Iconsax.profile_2user,
                       color: (controller.selectedIndex == 1)?
                       (
                         const Color(0xff1B5299)
@@ -55,21 +57,15 @@ class HolderScreen extends StatelessWidget {
                       size: 25,
                     )
                   ),
-                  TextButton(
-                    onPressed: (){
-                      controller.updateSelectedIndexItem(2);
-                    }, 
-                    child: Icon(
-                      Iconsax.user,
-                      color: (controller.selectedIndex == 2)?
-                      (
-                        const Color(0xff1B5299)
-                      ):
-                      (
-                        Colors.grey
-                      ),
-                      size: 25,
-                    )
+                  FloatingActionButton(
+                    onPressed: () {
+                      Get.toNamed(createJobScreen);
+                    },
+                    backgroundColor: const Color(0xff1B5299),
+                    child: const Icon(
+                      Iconsax.add,
+                      color: Colors.white,
+                    ),
                   ),
                   TextButton(
                     onPressed: (){
@@ -83,7 +79,7 @@ class HolderScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: (){
-                      Get.toNamed(settingsScreen);
+                      Get.toNamed(contractorSettingScreen);
                     }, 
                     child: const Icon(
                       Iconsax.setting_2,

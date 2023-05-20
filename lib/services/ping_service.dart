@@ -6,7 +6,7 @@ import '../routes/api_routes_names.dart';
 class PingApiService {
   static Future<Response?> pingServerService() async{
     try {
-      String fullUrl = baseUrl;
+      String fullUrl = "$baseUrl/api/v1/user";
       print("FULLURL:$fullUrl");
 
       var response = await Dio().get(

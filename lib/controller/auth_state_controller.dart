@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:handy_contractors/services/ping_service.dart';
 import 'package:handy_contractors/services/user_api_services.dart';
 
 import '../routes/app_route_names.dart';
+import '../screens/WorkersScreens/dojahKycWorkers.dart';
 import '../services/auth_api_services.dart';
+import '../storage/secureStorage.dart';
 
 class AuthStateController extends GetxController{
   // INSTANT VARIABLES
@@ -21,6 +24,7 @@ class AuthStateController extends GetxController{
     "Worker",
     "Contractor",
   ];
+  TextEditingController _emailController = TextEditingController();
 
   // GETTERS
   String get fullname => _fullname;
@@ -33,6 +37,7 @@ class AuthStateController extends GetxController{
   bool get isLoading => _isLoading;
   dynamic get otpCode => _otpCode;
   List get userTypes => _userTypes;
+  TextEditingController get emailController => _emailController;
 
   // SETTERS
   updateFullname(value) {
@@ -71,6 +76,10 @@ class AuthStateController extends GetxController{
     _selectedUserType = value;
     update();
   }
+  updateEmailController(value) {
+    _emailController = value;
+    update();
+  }
 
   Future<void> signUpUser() async{
     updateIsLoading(true);
@@ -90,6 +99,9 @@ class AuthStateController extends GetxController{
     bool isSuccess = responseData["success"];
     if(isSuccess){
       updateIsLoading(false);
+
+      await LocalStorage().storeUserId(responseData['data']["user"]["_id"]);
+
       Fluttertoast.showToast(
         msg: "Registered Successfully!!!",
         toastLength: Toast.LENGTH_LONG,
@@ -117,7 +129,7 @@ class AuthStateController extends GetxController{
     update();
   } 
 
-  Future<void> loginUser() async{
+  Future<void> loginUser(BuildContext context   ) async{
     updateIsLoading(true);
 
     Map<String, dynamic> _details = {
@@ -142,6 +154,7 @@ class AuthStateController extends GetxController{
         textColor: Colors.white,
         fontSize: 16.0
       );
+      // KycVerification.kycVerification(context);
       Get.offAllNamed(holderScreen);
 
     } else {
@@ -428,7 +441,9 @@ class AuthStateController extends GetxController{
         fontSize: 16.0
       );
 
-      // Get.offAllNamed(la);
+      // updateEmailController(responseData[])
+
+      Get.toNamed(holderScreen);
 
     } else {
       updateIsLoading(false);
@@ -467,6 +482,44 @@ class AuthStateController extends GetxController{
       );
 
       // Get.offAllNamed(la);
+
+    } else {
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Failed!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+    }
+
+    update();
+  } 
+  
+  Future<void> pingServer() async{
+    updateIsLoading(true);
+
+
+    var response = await PingApiService.pingServerService();
+    var responseData = response!.data;
+    print(responseData);
+
+    bool isSuccess = responseData["success"];
+    if(isSuccess){
+      updateIsLoading(false);
+      Fluttertoast.showToast(
+        msg: "Welcome!!!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+
 
     } else {
       updateIsLoading(false);

@@ -1,22 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:handy_contractors/routes/app_route_names.dart';
+import 'package:handy_contractors/controller/auth_state_controller.dart';
+
+import '../../routes/app_route_names.dart';
+import '../../storage/secureStorage.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  SplashScreen({super.key});
+
+  final AuthStateController _authStateController = Get.put(AuthStateController());
+
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+
 class _SplashScreenState extends State<SplashScreen> {
+  check() async{
+    String id = await LocalStorage().fetchUserId();
+
+    if(id != ""){
+      Get.offAllNamed(loginScreen);
+    } else {
+      Get.offAllNamed(onboardingScreen);
+    }
+  }
   @override
   void initState() {
-    // TODO: implement initState
     Future.delayed(
       const Duration(seconds: 3),
       (){
-        Get.toNamed(onboardingScreen);
+        check();
       }
     );
     super.initState();

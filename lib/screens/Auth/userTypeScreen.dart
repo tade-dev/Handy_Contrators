@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:handy_contractors/controller/auth_state_controller.dart';
 import 'package:handy_contractors/routes/app_route_names.dart';
 
+import '../WorkersScreens/dojahKycWorkers.dart';
+
 class UserTypeScreen extends StatelessWidget {
   UserTypeScreen({super.key});
 
@@ -75,10 +77,10 @@ class UserTypeScreen extends StatelessWidget {
                         width: Get.width,
                         child: Center(
                           child: RadioListTile(
-                            value: 1, 
-                            groupValue: controller.radioValue, 
+                            value: controller.userTypes[0], 
+                            groupValue: controller.selectedUserType, 
                             onChanged: ((value) {
-                              controller.updateRadioState(value);
+                              controller.updateUserType(value);
                             }),
                             title: const Text(
                               "Worker",
@@ -102,10 +104,10 @@ class UserTypeScreen extends StatelessWidget {
                         width: Get.width,
                         child: Center(
                           child: RadioListTile(
-                            value: 2,
-                            groupValue: controller.radioValue,
+                            value: controller.userTypes[1],
+                            groupValue: controller.selectedUserType,
                             onChanged: ((value) {
-                              controller.updateRadioState(value);
+                              controller.updateUserType(value);
                             }),
                             title: const Text(
                               "Contractor",
@@ -124,7 +126,10 @@ class UserTypeScreen extends StatelessWidget {
                       width: Get.width,
                       child: TextButton(
                         onPressed: (){
-                          Get.toNamed(chooseInterstsScreen);
+                          (controller.selectedUserType == "Worker")?
+                          Get.offAllNamed(holderScreen)
+                          :
+                          Get.offAllNamed(contractorsHolderScreen);
                         }, 
                         style: TextButton.styleFrom(
                           shape: RoundedRectangleBorder(

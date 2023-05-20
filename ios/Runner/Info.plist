@@ -28,6 +28,14 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Dojah needs access to location when open.</string>
+	<key>NSCameraUsageDescription</key>
+    <string>Dojah Flutter camera description.</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Dojah microphone Access.</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<key>UISupportedInterfaceOrientations</key>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

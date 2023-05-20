@@ -24,3 +24,16 @@ String settingsScreen = "/settingsScreen";
 String profileScreen = "/profileScreen";
 String editProfileScreen = "/editProfileScreen";
 String jobApplicationScreen = "/jobApplicationScreen";
+String getWorkersProfileScreen = "/getWorkersProfileScreen";
+
+// =========== CONTRACTORS ROUTE ===========
+String contractorsHolderScreen = "/contractorsHolderScreen";
+String createJobScreen = "/createJobScreen";
+String workersProfileScreen = "/workersProfileScreen";
+String hireWorkersScreen = "/hireWorkersScreen";
+String contractorNotificationScreen = "/contractorNotificationScreen";
+String contractorChatListScreen = "/contractorChatListScreen";
+String getContractorsProfileScreen = "/getContractorsProfileScreen";
+String contractorSettingScreen = "/contractorSettingScreen";
+String manageJobsScreen = "/manageJobsScreen";
+String conProfileScreen = "/conProfileScreen";
